@@ -45,6 +45,18 @@ class UMark extends LitElement {
   static get properties() {
     return {
       /* TODO: SLIDE 71 */
+      grayscale: {
+        type: Boolean,
+        attribute: 'grayscale',
+      },
+      invert: {
+        type: Boolean,
+        attribute: 'invert',
+      },
+      location: {
+        type: String,
+        attribute: 'location',
+      },
       /* TODO: SLIDE 72 */
     };
   }
@@ -115,18 +127,18 @@ class UMark extends LitElement {
         </defs>
         <!-- TODO: SLIDE 73.1 -->
         <path 
-          class="shield-lightest" 
+          class="shield-type${this.grayscale ? ' grayscale' : ''}" 
           d="${uMarkPaths.light}"/>
         <path 
-          class="shield-darkest" 
+        class="shield-type${this.grayscale ? ' grayscale' : ''}" 
           d="${uMarkPaths.dark}"/>
         <path 
-          class="shield-shadow" 
+        class="shield-type${this.grayscale ? ' grayscale' : ''}" 
           d="${uMarkPaths.shadow}"/>
         <!-- TODO: SLIDE 73.2 -->
-        <path 
-          class="text" 
-          d="${this.svgData?.path}"/>
+        <path
+          class="text${this.grayscale ? ' grayscale' : ''}${this.invert ? ' invert' : ''}"
+        d="${this._textPath}"/>
         </svg>
       `;
   }
